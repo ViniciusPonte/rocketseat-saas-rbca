@@ -1,0 +1,18 @@
+{
+  "name": "@saas/auth",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "devDependencies": {
+    "@saas/prettier": "*",
+    "@saas/eslint-config": "*",
+    "@saas/tsconfig": "*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@saas/eslint-config/base"
+    ]
+  },
+  "prettier": "@saas/prettier"
+}

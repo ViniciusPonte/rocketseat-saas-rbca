@@ -1,5 +1,5 @@
 {
-  "name": "@acl/eslint-config",
+  "name": "@saas/eslint-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -11,10 +11,12 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "@acl/prettier": "*"
+    "@saas/prettier": "*"
   },
-  "prettier": "@acl/prettier",
+  "prettier": "@saas/prettier",
   "eslintConfig": {
-      "extends": ["./base.js"]
+    "extends": [
+      "./base.js"
+    ]
   }
 }
