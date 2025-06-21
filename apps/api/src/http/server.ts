@@ -15,6 +15,7 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { routes } from './routes'
 import fastifyJwt from '@fastify/jwt'
 import { errorHandler } from './error-handler'
+import { env } from '@saas/env'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -32,6 +33,15 @@ app.register(fastifySwagger, {
       description: 'Full-stack SaaS APP with multi-tenant & RBAC',
       version: '1.0.0',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
     openapi: '3.0.3' satisfies ZodOpenApiVersion,
   },
   transform: fastifyZodOpenApiTransform,
@@ -43,13 +53,13 @@ app.register(fastifySwaggerUI, {
 })
 
 app.register(fastifyJwt, {
-  secret: 'my-jwt-secret',
+  secret: env.JWT_SECRET,
 })
 
 app.register(fastifyCors)
 
 routes(app)
 
-app.listen({ port: 3333 }).then(() => {
+app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('HTTP server is running')
 })
