@@ -8,6 +8,7 @@
     "prisma-seed": "prisma db seed"
   },
   "dependencies": {
+    "@fastify/jwt": "^9.1.0",
     "@fastify/swagger": "^9.5.1",
     "@fastify/swagger-ui": "^5.2.3",
     "@saas/auth": "*",
