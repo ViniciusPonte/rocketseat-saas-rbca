@@ -8,11 +8,15 @@
     "prisma-seed": "prisma db seed"
   },
   "dependencies": {
+    "@fastify/swagger": "^9.5.1",
+    "@fastify/swagger-ui": "^5.2.3",
     "@saas/auth": "*",
     "bcryptjs": "^3.0.2",
     "fastify": "^5.4.0",
     "fastify-type-provider-zod": "^5.0.1",
-    "zod": "^3.25.67"
+    "fastify-zod-openapi": "^4.1.2",
+    "zod": "^3.25.67",
+    "zod-openapi": "^4.2.4"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",
