@@ -1,13 +1,8 @@
 import { prisma } from '@/lib/prisma'
-import { compare } from 'bcryptjs'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
-
-const getProfileSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-})
+import { BadRequestError } from '../_errors/bad-request-errors'
 
 export async function getProfile(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -47,7 +42,7 @@ export async function getProfile(app: FastifyInstance) {
       })
 
       if (!user) {
-        return reply.status(400).send({ message: 'User not found' })
+        throw new BadRequestError('User not found')
       }
 
       return reply.send({ user })

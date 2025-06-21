@@ -14,6 +14,7 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 
 import { routes } from './routes'
 import fastifyJwt from '@fastify/jwt'
+import { errorHandler } from './error-handler'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -21,6 +22,8 @@ app.register(fastifyZodOpenApiPlugin)
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
+
+app.setErrorHandler(errorHandler)
 
 app.register(fastifySwagger, {
   openapi: {
