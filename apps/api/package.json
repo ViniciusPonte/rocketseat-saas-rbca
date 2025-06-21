@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "tsx watch src/http/server.ts",
+    "docker-init": "docker compose up -d",
+    "docker-start": "docker compose start",
     "prisma-studio": "prisma studio",
     "prisma-update-db": "prisma migrate dev",
     "prisma-seed": "prisma db seed"
@@ -14,6 +16,7 @@
     "@saas/auth": "*",
     "bcryptjs": "^3.0.2",
     "fastify": "^5.4.0",
+    "fastify-plugin": "^5.0.1",
     "fastify-type-provider-zod": "^5.0.1",
     "fastify-zod-openapi": "^4.1.2",
     "zod": "^3.25.67",
