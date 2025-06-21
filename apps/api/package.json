@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "tsx watch src/http/server.ts",
-    "prisma-studio": "prisma studio"
+    "prisma-studio": "prisma studio",
+    "prisma-update-db": "prisma migrate dev",
+    "prisma-seed": "prisma db seed"
   },
   "dependencies": {
     "@saas/auth": "*",
@@ -13,12 +15,16 @@
     "zod": "^3.25.67"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.8.0",
     "@saas/eslint-config": "*",
     "@saas/prettier": "*",
     "@saas/tsconfig": "*",
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "^24.0.3",
     "tsx": "^4.20.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "eslintConfig": {
     "extends": [
