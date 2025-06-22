@@ -17,6 +17,8 @@ import fastifyJwt from '@fastify/jwt'
 import { errorHandler } from './error-handler'
 import { env } from '@saas/env'
 
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlYWFiZWIzMS1lNzZmLTRkNGUtOGE4Yi00ZjIzNjQwZGMzZjgiLCJpYXQiOjE3NTA1NDgxMjcsImV4cCI6MTc1MTE1MjkyN30.-XVOul-j_na9FsWxyFVer3yDAQmtxcOzNo0keRGOsAM
+
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.register(fastifyZodOpenApiPlugin)

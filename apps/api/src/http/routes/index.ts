@@ -5,6 +5,13 @@ import { getProfile } from './auth/get-profile'
 import { requestPasswordRecover } from './auth/request-password-recover'
 import { resetPassword } from './auth/reset-password'
 import { authenticateWithGithub } from './auth/authenticate-with-github'
+import { createOrganization } from './orgs/create-organization'
+import { getMembership } from './orgs/get-membership'
+import { getOrganization } from './orgs/get-organization'
+import { getOrganizations } from './orgs/get-organizations'
+import { updateOrganization } from './orgs/update-organization'
+import { shutdownOrganization } from './orgs/shutdown-organization'
+import { transferOrganization } from './orgs/transfer-organization'
 
 export const routes = (app: FastifyInstance) => {
   // Auth
@@ -13,6 +20,14 @@ export const routes = (app: FastifyInstance) => {
   app.register(getProfile)
   app.register(requestPasswordRecover)
   app.register(resetPassword)
-  app.register(authenticateWithGithub)
-  //https://github.com/login/oauth/authorize?client_id=Ov23liwFAPiLoHHxnp6i&redirect_uri=http://localhost:3000/api/auth/callback&scope=user:email
+  app.register(authenticateWithGithub) //https://github.com/login/oauth/authorize?client_id=Ov23liwFAPiLoHHxnp6i&redirect_uri=http://localhost:3000/api/auth/callback&scope=user:email
+
+  // Organizations
+  app.register(createOrganization)
+  app.register(getMembership)
+  app.register(getOrganization)
+  app.register(getOrganizations)
+  app.register(updateOrganization)
+  app.register(shutdownOrganization)
+  app.register(transferOrganization)
 }
