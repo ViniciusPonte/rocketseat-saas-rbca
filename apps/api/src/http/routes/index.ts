@@ -20,6 +20,14 @@ import { updateProject } from './projects/update-project'
 import { getMembers } from './members/get-members'
 import { updateMember } from './members/update-member'
 import { removeMember } from './members/remove-member'
+import { createInvite } from './invites/create-invite'
+import { getInvite } from './invites/get-invite'
+import { getInvites } from './invites/get-invites'
+import { acceptInvite } from './invites/accept-invite'
+import { rejectInvite } from './invites/reject-invite'
+import { revokeInvite } from './invites/revoke-invite'
+import { getPendingInvites } from './invites/get-pending-invites'
+import { getOrganizationBilling } from './billing/get-organization-billing'
 
 export const routes = (app: FastifyInstance) => {
   // Auth
@@ -50,4 +58,16 @@ export const routes = (app: FastifyInstance) => {
   app.register(getMembers)
   app.register(updateMember)
   app.register(removeMember)
+
+  // Invites
+  app.register(createInvite)
+  app.register(getInvite)
+  app.register(getInvites)
+  app.register(acceptInvite)
+  app.register(rejectInvite)
+  app.register(revokeInvite)
+  app.register(getPendingInvites)
+
+  // Billing
+  app.register(getOrganizationBilling)
 }
