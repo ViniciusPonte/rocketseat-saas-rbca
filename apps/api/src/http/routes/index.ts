@@ -17,6 +17,9 @@ import { deleteProject } from './projects/delete-project'
 import { getProject } from './projects/get-project'
 import { getProjects } from './projects/get-projects'
 import { updateProject } from './projects/update-project'
+import { getMembers } from './members/get-members'
+import { updateMember } from './members/update-member'
+import { removeMember } from './members/remove-member'
 
 export const routes = (app: FastifyInstance) => {
   // Auth
@@ -42,4 +45,9 @@ export const routes = (app: FastifyInstance) => {
   app.register(getProject)
   app.register(getProjects)
   app.register(updateProject)
+
+  // Members
+  app.register(getMembers)
+  app.register(updateMember)
+  app.register(removeMember)
 }
