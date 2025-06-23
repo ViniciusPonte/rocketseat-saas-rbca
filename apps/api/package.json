@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "npm run env:load tsx watch src/http/server.ts",
     "env:load": "dotenv -e ../../.env --",
-    "docker-init": "docker compose up -d",
-    "docker-start": "docker compose start",
+    "docker-init": "npm run env:load docker compose up -d",
+    "docker-start": "npm run env:load docker compose start",
     "db:studio": "npm run env:load prisma studio",
     "db:migrate": "npm run env:load prisma migrate dev",
     "db:seed": "npm run env:load prisma db seed"

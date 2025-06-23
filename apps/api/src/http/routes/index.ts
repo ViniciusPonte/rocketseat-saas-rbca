@@ -12,6 +12,11 @@ import { getOrganizations } from './orgs/get-organizations'
 import { updateOrganization } from './orgs/update-organization'
 import { shutdownOrganization } from './orgs/shutdown-organization'
 import { transferOrganization } from './orgs/transfer-organization'
+import { createProject } from './projects/create-project'
+import { deleteProject } from './projects/delete-project'
+import { getProject } from './projects/get-project'
+import { getProjects } from './projects/get-projects'
+import { updateProject } from './projects/update-project'
 
 export const routes = (app: FastifyInstance) => {
   // Auth
@@ -30,4 +35,11 @@ export const routes = (app: FastifyInstance) => {
   app.register(updateOrganization)
   app.register(shutdownOrganization)
   app.register(transferOrganization)
+
+  // Projects
+  app.register(createProject)
+  app.register(deleteProject)
+  app.register(getProject)
+  app.register(getProjects)
+  app.register(updateProject)
 }
