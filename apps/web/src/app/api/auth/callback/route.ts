@@ -18,8 +18,6 @@ export async function GET(request: NextRequest) {
 
   const { token } = await signInWithGithub({ code })
 
-  console.log(token)
-
   const cookieStore = await cookies()
 
   cookieStore.set('token', token, {
