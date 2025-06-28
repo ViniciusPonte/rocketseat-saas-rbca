@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 import Link from 'next/link'
-import { signInWithEmailAndPassword } from '../actions'
+import { signInWithEmailAndPassword, signInWithGithub } from '../../actions'
 import githubIcon from '@/assets/github-icon.svg'
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import { FormInput } from '@/components/base/form-input'
@@ -59,7 +59,12 @@ export function SignInForm() {
 
       <Separator />
 
-      <Button type="submit" variant="outline" className="w-full">
+      <Button
+        type="button"
+        onClick={signInWithGithub}
+        variant="outline"
+        className="w-full"
+      >
         <Image src={githubIcon} alt="" className="mr-2 size-4 dark:invert" />
         Sign in with GitHub
       </Button>

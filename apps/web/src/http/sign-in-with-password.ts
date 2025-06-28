@@ -16,7 +16,6 @@ export async function signInWithPassword(request: SignInWithPasswordRequest) {
         email,
         password,
       },
-      fetch: globalThis.fetch,
     })
     .json<SignInWithPasswordResponse>()
 
