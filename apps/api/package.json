@@ -6,7 +6,7 @@
     "env:load": "dotenv -e ../../.env --",
     "docker-init": "npm run env:load docker compose up -d",
     "docker-start": "npm run env:load docker compose start",
-    "db:studio": "npm run env:load prisma studio",
+    "db:studio": "npm run  env:load prisma studio",
     "db:migrate": "npm run env:load prisma migrate dev",
     "db:seed": "npm run env:load prisma db seed"
   },
@@ -33,6 +33,7 @@
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "^24.0.3",
     "dotenv-cli": "^8.0.0",
+    "prisma": "^6.11.0",
     "tsx": "^4.20.3"
   },
   "prisma": {
