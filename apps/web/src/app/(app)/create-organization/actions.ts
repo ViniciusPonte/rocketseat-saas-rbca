@@ -1,5 +1,7 @@
 import { createOrganization } from '@/http/create-organization'
+import { createSlug } from '@/utils/create-slug'
 import { HTTPError } from 'ky'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 const organizationSchema = z
@@ -73,9 +75,5 @@ export async function createOrganizationAction(data: FormData) {
     }
   }
 
-  return {
-    success: true,
-    message: 'Successfully saved the organization',
-    errors: null,
-  }
+  redirect(`org/${createSlug(name)}`)
 }
