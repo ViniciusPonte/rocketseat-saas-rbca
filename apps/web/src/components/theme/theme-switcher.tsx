@@ -9,9 +9,11 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 import { useTheme } from 'next-themes'
+import { useRouter } from 'next/navigation'
 
 export function ThemeSwitcher() {
-  const { resolvedTheme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
+  const { refresh } = useRouter()
 
   return (
     <DropdownMenu>
