@@ -1,17 +1,14 @@
 'use client'
 
-import { FormCheckbox } from '@/components/base/form-checkbox'
 import { FormInput } from '@/components/base/form-input'
 import { Button } from '@/components/ui/button'
 import { useFormState } from '@/hooks/use-form-state'
-import { createOrganizationAction } from './actions'
+import { createProjectAction } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertTriangle, Loader2 } from 'lucide-react'
 
-export function OrganizationForm() {
-  const [formState, handleSubmit, isPending] = useFormState(
-    createOrganizationAction
-  )
+export function ProjectForm() {
+  const [formState, handleSubmit, isPending] = useFormState(createProjectAction)
 
   const { errors, message, success } = formState
 
@@ -39,26 +36,19 @@ export function OrganizationForm() {
 
       <FormInput
         name="name"
-        label="Organization name"
+        label="Project name"
         error={errors?.name && errors?.name[0]}
       />
-      <FormInput
-        name="domain"
-        label="E-mail domain"
-        inputMode="url"
-        placeholder="example.com"
-        error={errors?.domain && errors?.domain[0]}
-      />
 
-      <FormCheckbox
-        name="shouldAttachUsersByDomain"
-        label="Auto-join new members"
-        description="This will automatically invite all members with same e-mail domain
-              to this organization"
+      <FormInput
+        name="description"
+        label="Project description"
+        isTextArea
+        error={errors?.description && errors?.description[0]}
       />
 
       <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? <Loader2 /> : 'Save organization'}
+        {isPending ? <Loader2 /> : 'Save project'}
       </Button>
     </form>
   )

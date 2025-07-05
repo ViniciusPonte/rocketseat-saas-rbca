@@ -6,14 +6,14 @@ import { redirect } from 'next/navigation'
 
 export async function isAuthenticated() {
   const cookieStore = await cookies()
-
   const token = cookieStore.get('token')?.value
 
   return !!token
 }
 
 export async function getCurrentOrg() {
-  return (await cookies()).get('org')?.value ?? null
+  const cookieStore = await cookies()
+  return cookieStore.get('org')?.value
 }
 
 export async function getCurrentMembership() {
