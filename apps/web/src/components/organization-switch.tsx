@@ -21,24 +21,28 @@ export async function OrganizationSwitch() {
     (org) => org.slug === currentOrg
   )
 
+  const renderCurrentOrganization = () => {
+    if (currentOrganization) {
+      return (
+        <>
+          <Avatar className="size-4">
+            {currentOrganization.avatarUrl && (
+              <AvatarImage src={currentOrganization.avatarUrl} />
+            )}
+            <AvatarFallback />
+          </Avatar>
+          <span className="truncate text-left">{currentOrganization.name}</span>
+        </>
+      )
+    }
+
+    return <span className="text-muted-foreground">Select organization</span>
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus-visible:ring-primary flex w-[168px] items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-2">
-        {currentOrganization ? (
-          <>
-            <Avatar className="mr-2 size-4">
-              {currentOrganization.avatarUrl && (
-                <AvatarImage src={currentOrganization.avatarUrl} />
-              )}
-              <AvatarFallback />
-            </Avatar>
-            <span className="truncate text-left">
-              {currentOrganization.name}
-            </span>
-          </>
-        ) : (
-          <span className="text-muted-foreground">Select organization</span>
-        )}
+        {renderCurrentOrganization()}
         <ChevronsUpDown className="text-muted-foreground ml-auto size-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent

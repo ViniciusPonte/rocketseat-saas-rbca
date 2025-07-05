@@ -5,8 +5,6 @@ export async function middleware(request: NextRequest) {
 
   const response = NextResponse.next()
 
-  console.log(pathname)
-
   if (pathname.startsWith('/org')) {
     const result = pathname.split('/')
     const slug = result[2]

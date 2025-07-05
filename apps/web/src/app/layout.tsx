@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { ThemeProvider } from 'next-themes'
 import './globals.css'
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,13 +14,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>{' '}
+        <Providers>{children}</Providers>
+        {/* No next 15, passar os componentes filhos dentro de um children nao faz com q eles sejam client components */}
       </body>
     </html>
   )
