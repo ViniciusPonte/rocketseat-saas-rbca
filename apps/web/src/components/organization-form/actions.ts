@@ -82,7 +82,11 @@ export async function createOrganizationAction(data: FormData) {
     }
   }
 
-  redirect(`org/${createSlug(name)}`)
+  return {
+    success: true,
+    message: 'Successfully created organization!',
+    errors: null,
+  }
 }
 
 export async function updateOrganizationAction(data: FormData) {
