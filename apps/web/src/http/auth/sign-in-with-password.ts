@@ -1,4 +1,4 @@
-import { api } from './api-client'
+import { api } from '../api-client'
 
 interface SignInWithPasswordRequest {
   email: string

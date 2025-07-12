@@ -1,6 +1,10 @@
-import { createOrganization } from '@/http/create-organization'
+import { createOrganization } from '@/http/organization/create-organization'
+import { updateOrganization } from '@/http/organization/update-organization'
 import { createSlug } from '@/utils/create-slug'
+import revalidateTagAction from '@/utils/revalidate-tag'
+import { getCookie, type CookiesFn } from 'cookies-next'
 import { HTTPError } from 'ky'
+import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
@@ -45,6 +49,8 @@ const organizationSchema = z
     }
   )
 
+export type OrganizationSchema = z.infer<typeof organizationSchema>
+
 export async function createOrganizationAction(data: FormData) {
   const validData = organizationSchema.safeParse(Object.fromEntries(data))
 
@@ -61,6 +67,7 @@ export async function createOrganizationAction(data: FormData) {
       domain,
       shouldAttachUsersByDomain,
     })
+    revalidateTagAction('organizations')
   } catch (err) {
     if (err instanceof HTTPError) {
       const { message } = await err.response.json()
@@ -76,4 +83,41 @@ export async function createOrganizationAction(data: FormData) {
   }
 
   redirect(`org/${createSlug(name)}`)
+}
+
+export async function updateOrganizationAction(data: FormData) {
+  let cookieStore: CookiesFn | undefined
+  const currentOrganization = await getCookie('org', { cookies: cookieStore })
+  const validData = organizationSchema.safeParse(Object.fromEntries(data))
+
+  if (!validData.success) {
+    const errors = validData.error.flatten().fieldErrors
+    return { success: false, message: null, errors }
+  }
+
+  const { name, domain, shouldAttachUsersByDomain } = validData.data
+
+  try {
+    await updateOrganization({
+      org: currentOrganization!,
+      name,
+      domain,
+      shouldAttachUsersByDomain,
+    })
+    revalidateTagAction('organizations')
+  } catch (err) {
+    if (err instanceof HTTPError) {
+      const { message } = await err.response.json()
+
+      return { success: false, message, errors: null }
+    }
+
+    return {
+      success: false,
+      message: 'Unexpected error, try again in a few minutes',
+      errors: null,
+    }
+  }
+
+  return { success: true, message: 'Successfully updated!', errors: null }
 }

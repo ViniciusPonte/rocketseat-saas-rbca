@@ -13,10 +13,9 @@ import {
 } from './ui/dropdown-menu'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { use } from 'react'
-import { getProjects } from '@/http/get-projects'
 import { useQuery } from '@tanstack/react-query'
 import { Skeleton } from './ui/skeleton'
+import { getProjects } from '@/http/projects/get-projects'
 
 export function ProjectSwitch() {
   const { slug: orgSlug, project: projSlug } = useParams<{

@@ -17,6 +17,7 @@ export function FormInput({
   error,
   isTextArea = false,
   children,
+  ...props
 }: FormInputProps) {
   return (
     <div className="space-y-2">
@@ -24,7 +25,7 @@ export function FormInput({
       {isTextArea ? (
         <Textarea name={name} id={name} />
       ) : (
-        <Input name={name} type={type ?? 'text'} id={name} />
+        <Input name={name} type={type ?? 'text'} id={name} {...props} />
       )}
 
       {error && (

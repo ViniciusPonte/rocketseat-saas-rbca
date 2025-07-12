@@ -1,5 +1,4 @@
-import { getCurrentOrg } from '@/auth/auth'
-import { createProject } from '@/http/create-project'
+import { createProject } from '@/http/projects/create-project'
 import { queryClient } from '@/lib/react-query'
 import { getCookie, type CookiesFn } from 'cookies-next'
 import { HTTPError } from 'ky'

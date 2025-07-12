@@ -10,8 +10,8 @@ import {
 } from './ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import Link from 'next/link'
-import { getOrganizations } from '@/http/get-organizations'
 import { getCurrentOrg } from '@/auth/auth'
+import { getOrganizations } from '@/http/organization/get-organizations'
 
 export async function OrganizationSwitch() {
   const currentOrg = await getCurrentOrg()
