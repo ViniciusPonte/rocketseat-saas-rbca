@@ -6,7 +6,6 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { UnauthorizedError } from '../_errors/unauthorized-errors'
 import { roleSchema } from '@saas/auth'
-import { BadRequestError } from '../_errors/bad-request-errors'
 
 const paramsSchema = z.object({
   slug: z.string(),
@@ -25,20 +24,22 @@ export async function getInvites(app: FastifyInstance) {
           security: [{ bearerAuth: [] }],
           params: paramsSchema,
           response: {
-            200: z.array(
-              z.object({
-                id: z.string().uuid(),
-                createdAt: z.date(),
-                role: roleSchema,
-                email: z.string().email(),
-                author: z
-                  .object({
-                    name: z.string().nullable(),
-                    id: z.string().uuid(),
-                  })
-                  .nullable(),
-              })
-            ),
+            200: z.object({
+              invites: z.array(
+                z.object({
+                  id: z.string().uuid(),
+                  createdAt: z.date(),
+                  role: roleSchema,
+                  email: z.string().email(),
+                  author: z
+                    .object({
+                      name: z.string().nullable(),
+                      id: z.string().uuid(),
+                    })
+                    .nullable(),
+                })
+              ),
+            }),
           },
         },
       },
@@ -74,7 +75,7 @@ export async function getInvites(app: FastifyInstance) {
           },
         })
 
-        return invites
+        return { invites }
       }
     )
 }

@@ -1,6 +1,7 @@
 'use server'
 
 import { getCurrentOrg } from '@/auth/auth'
+import { revokeInvite } from '@/http/invites/revoke-invite'
 import { removeMember } from '@/http/members/remove-member'
 import { updateMember } from '@/http/members/update-member-role'
 import revalidateTagAction from '@/utils/revalidate-tag'
@@ -27,4 +28,15 @@ export async function updateMemberAction(memberId: string, role: Role) {
   })
 
   revalidateTagAction(`${currentOrg}/members`)
+}
+
+export async function revokeInviteAction(inviteId: string) {
+  const currentOrg = await getCurrentOrg()
+
+  await revokeInvite({
+    org: currentOrg!,
+    inviteId,
+  })
+
+  revalidateTagAction(`${currentOrg}/invites`)
 }
