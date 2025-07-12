@@ -23,7 +23,7 @@ export function UpdateMemberRoleSelect({
   }
 
   return (
-    <Select {...props}>
+    <Select onValueChange={updateMemberRole} {...props}>
       <SelectTrigger className="h-8 w-32">
         <SelectValue />
       </SelectTrigger>

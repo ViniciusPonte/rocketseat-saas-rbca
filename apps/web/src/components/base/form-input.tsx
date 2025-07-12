@@ -2,9 +2,10 @@ import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import type React from 'react'
 import { Textarea } from '../ui/textarea'
+import { twMerge } from 'tailwind-merge'
 
 type FormInputProps = {
-  label: string
+  label?: string
   error?: string
   isTextArea?: boolean
   children?: React.ReactNode
@@ -20,8 +21,8 @@ export function FormInput({
   ...props
 }: FormInputProps) {
   return (
-    <div className="space-y-2">
-      <Label htmlFor={name}>{label}</Label>
+    <div className={twMerge('space-y-2', props.className)}>
+      {label && <Label htmlFor={name}>{label}</Label>}
       {isTextArea ? (
         <Textarea name={name} id={name} />
       ) : (

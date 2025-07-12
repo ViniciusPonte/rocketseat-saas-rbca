@@ -3,9 +3,9 @@
 import { FormInput } from '@/components/base/form-input'
 import { Button } from '@/components/ui/button'
 import { useFormState } from '@/hooks/use-form-state'
-import { createProjectAction } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertTriangle, Loader2 } from 'lucide-react'
+import { createProjectAction } from '../actions'
 
 export function ProjectForm() {
   const [formState, handleSubmit, isPending] = useFormState(createProjectAction)

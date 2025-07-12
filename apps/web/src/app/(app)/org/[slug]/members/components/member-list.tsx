@@ -8,7 +8,7 @@ import { getProfile } from '@/http/user/get-profile'
 import { ArrowLeftRight, Crown, UserMinus } from 'lucide-react'
 import Image from 'next/image'
 import { organizationSchema } from '@saas/auth'
-import { removeMemberAction } from './actions'
+import { removeMemberAction } from '../actions'
 import { UpdateMemberRoleSelect } from '@/components/update-member-role-select'
 
 export async function MemberList() {

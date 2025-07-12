@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { XOctagon } from 'lucide-react'
-import { revokeInviteAction } from './actions'
+import { revokeInviteAction } from '../actions'
 
 interface RevokeInviteButtonProps {
   inviteId: string

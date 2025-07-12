@@ -29,6 +29,8 @@ export const auth = fastifyPlugin(async (app: FastifyInstance) => {
         },
       })
 
+      console.log(userId, member)
+
       if (!member) {
         throw new UnauthorizedError('You are not a member of this organization')
       }
