@@ -1,5 +1,6 @@
 import { createProject } from '@/http/projects/create-project'
 import { queryClient } from '@/lib/react-query'
+import revalidateTagAction from '@/utils/revalidate-tag'
 import { getCookie, type CookiesFn } from 'cookies-next'
 import { HTTPError } from 'ky'
 import { z } from 'zod'
@@ -31,6 +32,8 @@ export async function createProjectAction(data: FormData) {
       description,
       org: currentOrganization!,
     })
+
+    revalidateTagAction(`${currentOrganization}/projects`)
   } catch (err) {
     if (err instanceof HTTPError) {
       const { message } = await err.response.json()
