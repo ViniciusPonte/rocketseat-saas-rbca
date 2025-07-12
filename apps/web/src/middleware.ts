@@ -10,6 +10,8 @@ export async function middleware(request: NextRequest) {
     const slug = result[2]
 
     response.cookies.set('org', slug)
+  } else {
+    response.cookies.delete('org')
   }
 
   return response

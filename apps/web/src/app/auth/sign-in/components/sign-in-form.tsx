@@ -10,8 +10,11 @@ import { AlertTriangle, Loader2 } from 'lucide-react'
 import { FormInput } from '@/components/base/form-input'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useFormState } from '@/hooks/use-form-state'
+import { useSearchParams } from 'next/navigation'
 
 export function SignInForm() {
+  const searchParams = useSearchParams()
+
   const [formState, handleSubmit, isPending] = useFormState(
     signInWithEmailAndPassword
   )
@@ -34,6 +37,7 @@ export function SignInForm() {
         type="email"
         label="E-mail"
         error={errors?.email && errors?.email[0]}
+        defaultValue={searchParams.get('email') ?? ''}
       />
       <FormInput
         name="password"
