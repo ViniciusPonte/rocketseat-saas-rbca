@@ -4,6 +4,8 @@
   "scripts": {
     "dev": "npm run env:load tsx watch src/http/server.ts",
     "env:load": "dotenv -e ../../.env --",
+    "build": "npx tsup",
+    "start": "node dist/http/server.js",
     "docker-init": "npm run env:load docker compose up -d",
     "docker-start": "npm run env:load docker compose start",
     "db:studio": "npm run  env:load prisma studio",
@@ -23,6 +25,7 @@
     "fastify-plugin": "^5.0.1",
     "fastify-type-provider-zod": "^5.0.1",
     "fastify-zod-openapi": "^4.1.2",
+    "tsup": "^8.5.0",
     "zod": "^3.25.67",
     "zod-openapi": "^4.2.4"
   },
