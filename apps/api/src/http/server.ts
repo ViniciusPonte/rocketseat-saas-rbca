@@ -19,6 +19,9 @@ import { env } from '@saas/env'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
+// no render, usar:
+// npm run prisma migrate deploy; npm run prisma generate; npm run start
+
 app.register(fastifyZodOpenApiPlugin)
 
 app.setSerializerCompiler(serializerCompiler)
@@ -60,6 +63,6 @@ app.register(fastifyCors)
 
 routes(app)
 
-app.listen({ port: env.PORT }).then(() => {
+app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server is running')
 })
